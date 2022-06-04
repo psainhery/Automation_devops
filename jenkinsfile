@@ -6,7 +6,7 @@ node {
     }
 
     stage('Build') {
-        app = docker.build("psainhery/docker-jenkins")
+        app = docker.build("psainhery/docker-jenkins1")
     }
 
     stage('Test') {
@@ -19,9 +19,9 @@ node {
     }
 
     stage('Livraision sur DockerHub') {
-        docker.withRegistry('https://registry.hub.docker.com', 'dockerhub-credential') {
+        docker.withRegistry('https://registry.hub.docker.com', 'hub.docker-credentials') {
             app.push("${env.BUILD_NUMBER}")
-            app.push("1.0")
+            app.push("v1.1")
         }
     }
 }
